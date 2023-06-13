@@ -1,11 +1,11 @@
 ﻿@model Category
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Delete";
 }
 
 <h1>Create</h1>
 
-<form method="post">
+<form method="post" asp-action="Delete">
     <table>
         <tr>
         <td>
@@ -13,7 +13,6 @@
         </td>
         <td>
                 <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
         </td>
 
         </tr>
@@ -23,21 +22,15 @@
             </td>
             <td>
                 <input asp-for="Display" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
             </td>
 
         </tr>
         <tr>
             <td>
-                <button type="submit">Create</button>
+                <button type="submit">Delete</button>
                 <a asp-controller="Category" asp-action="Index">Back to list</a>
             </td>
         </tr>
-        @*<tr>
-            <td colspan="2">
-                <div asp-validation-summary="All"></div>
-
-            </td>
-        </tr>*@
+        
     </table>
 </form>
