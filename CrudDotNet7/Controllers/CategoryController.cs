@@ -1,35 +1,41 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CrudDotNet7.Models;
 using CrudDotNet7.Data;
-
+using AutoMapper;
 
 namespace CrudDotNet7.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        private readonly IMapper _mapper;
+
+        public CategoryController(ApplicationDbContext db,IMapper mapper)
         {
              _db = db;
+            _mapper = mapper;
         }
         public IActionResult Index()
         {
-            IEnumerable < Category > objCategoryList = _db.Categories;
+            IEnumerable < Category > objCategoryList = _db.Categories.ToList();
             return View(objCategoryList);
         }
         public IActionResult Create()
         {
-            return View();
+            var model = new CategoryCreateModel();
+            return View(model);
         }
 
         //Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Category obj)
+        public IActionResult Create(CategoryCreateModel obj)
         {
-            if(ModelState.IsValid)
+            var model= _mapper.Map<Category>(obj);
+
+            if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
+                _db.Categories.Add(model);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -41,7 +47,7 @@ namespace CrudDotNet7.Controllers
             {
                 return NotFound();
             }
-            var CategoryFromDb = _db.Categories.Find(id);
+            var CategoryFromDb = _mapper.Map<Category>(id);
             if (CategoryFromDb == null)
             {
                 return NotFound();

@@ -1,4 +1,4 @@
-﻿@model Category
+﻿@model CrudDotNet7.ViewModel.CategoryCreateModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -12,7 +12,7 @@
             <label asp-for="Name"></label>
         </td>
         <td>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" placeholder="Enter product name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
         </td>
 
@@ -22,22 +22,17 @@
                 <label asp-for="Display"></label>
             </td>
             <td>
-                <input asp-for="Display" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <input asp-for="Display" placeholder="In stock" class="form-control" />
+                <span asp-validation-for="Display" class="text-danger"></span>
             </td>
 
         </tr>
+       
         <tr>
             <td>
-                <button type="submit">Create</button>
-                <a asp-controller="Category" asp-action="Index">Back to list</a>
+                <button class="btn btn-success" type="submit">Create</button>
+                <a asp-controller="Category" class="btn btn-primary" asp-action="Index">Back to list</a>
             </td>
         </tr>
-        @*<tr>
-            <td colspan="2">
-                <div asp-validation-summary="All"></div>
-
-            </td>
-        </tr>*@
     </table>
 </form>

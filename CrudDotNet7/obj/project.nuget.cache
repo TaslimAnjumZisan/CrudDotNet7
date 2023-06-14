@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "Qf9nHRNU1xgXJxnPZt1AJMhICF3mzVtV6xXIXWmfaoKyVYpAHm85+ilbslndOnyeWrMrtSGhyZ6/ST1IjQq+CQ==",
+  "dgSpecHash": "ZWxAek1oC7EKtwpCPbkv+x/UJ8ZRSgiqorh8/L4QD8FZXoDdSKHpEpOJEzcPuh4mLrfQF036pJHbuky1WW4FCw==",
   "success": true,
   "projectFilePath": "C:\\Users\\tasnim.anjum\\Desktop\\net7\\CrudDotNet7\\CrudDotNet7\\CrudDotNet7.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\tasnim.anjum\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\tasnim.anjum\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\tasnim.anjum\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\tasnim.anjum\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\tasnim.anjum\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\tasnim.anjum\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.0\\microsoft.aspnetcore.mvc.razor.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\tasnim.anjum\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\7.0.5\\microsoft.aspnetcore.mvc.razor.runtimecompilation.7.0.5.nupkg.sha512",
     "C:\\Users\\tasnim.anjum\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.11\\microsoft.aspnetcore.razor.language.6.0.11.nupkg.sha512",
     "C:\\Users\\tasnim.anjum\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\tasnim.anjum\\.nuget\\packages\\microsoft.build\\17.3.2\\microsoft.build.17.3.2.nupkg.sha512",

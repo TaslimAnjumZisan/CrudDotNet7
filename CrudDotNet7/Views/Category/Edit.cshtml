@@ -1,6 +1,6 @@
-﻿@model Category
+﻿@model CrudDotNet7.ViewModel.CategoryEditModel
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Edit";
 }
 
 <h1>Create</h1>
@@ -24,15 +24,15 @@
             </td>
             <td>
                 <input asp-for="Display" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <span asp-validation-for="Display" class="text-danger"></span>
 
             </td>
 
         </tr>
         <tr>
             <td>
-                <button type="submit">Update</button>
-                <a asp-controller="Category" asp-action="Index">Back to list</a>
+                <button class="btn btn-primary" type="submit">Update</button>
+                <a asp-controller="Category" class="btn btn-success" asp-action="Index">Back to list</a>
             </td>
         </tr>
         

@@ -1,3 +1,4 @@
+global using CrudDotNet7.ViewModel;
 using CrudDotNet7.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,8 @@ namespace CrudDotNet7
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")
                 ));
-
+            builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

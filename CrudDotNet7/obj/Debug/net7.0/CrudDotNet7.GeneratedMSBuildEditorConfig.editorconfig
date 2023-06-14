@@ -12,13 +12,9 @@ build_property.RootNamespace = CrudDotNet7
 build_property.ProjectDir = C:\Users\tasnim.anjum\Desktop\net7\CrudDotNet7\CrudDotNet7\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = C:\Users\tasnim.anjum\Desktop\net7\CrudDotNet7\CrudDotNet7
 build_property._RazorSourceGeneratorDebug = 
-
-[C:/Users/tasnim.anjum/Desktop/net7/CrudDotNet7/CrudDotNet7/Views/Category/Create - Copy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlIC0gQ29weS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/tasnim.anjum/Desktop/net7/CrudDotNet7/CrudDotNet7/Views/Category/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
