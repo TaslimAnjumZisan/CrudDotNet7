@@ -8,10 +8,11 @@ namespace CrudDotNet7.ViewModel
 
         [Key]
         public int Id { get; set; }
-
+        string pattern = "^[A-Z*a-z]";
         [Required(ErrorMessage = "Product name required")]
         [DisplayName("Product name")]
-        [StringLength(20)]
+        [RegularExpression("([A-Z*a-z]+)", ErrorMessage = "Please enter valid Name")]
+        [StringLength(20, ErrorMessage = "Do not enter more than 20 characters")]
         public string Name { get; set; }
 
         [DisplayName("Product stock")]

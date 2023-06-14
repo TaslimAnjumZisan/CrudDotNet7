@@ -10,7 +10,7 @@ namespace CrudDotNet7
         {
          
             CreateMap<Category, CategoryCreateModel>().ReverseMap();
-           // CreateMap<Category, CategoryEditModel>().ReverseMap();
+            CreateMap<Category, CategoryEditModel>().ReverseMap();
         }
     }
 }

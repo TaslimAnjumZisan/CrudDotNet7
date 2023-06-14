@@ -2,6 +2,8 @@
 using CrudDotNet7.Models;
 using CrudDotNet7.Data;
 using AutoMapper;
+using System.Security.Cryptography.Xml;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 
 namespace CrudDotNet7.Controllers
 {
@@ -31,42 +33,83 @@ namespace CrudDotNet7.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(CategoryCreateModel obj)
         {
-            var model= _mapper.Map<Category>(obj);
+          //  var model= _mapper.Map<Category>(obj);
 
-            if (ModelState.IsValid)
+            try
             {
-                _db.Categories.Add(model);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                var model = _mapper.Map<CategoryCreateModel, Category>(obj);
+
+                if (ModelState.IsValid)
+                {
+                    _db.Categories.Add(model);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(obj);
             }
-            return View(obj);
+            catch (Exception exp)
+            {
+                throw new Exception(exp.Message);
+            }
         }
-        public IActionResult Edit(int? id)
+        public async Task< IActionResult> Edit(int? id)
         {
-            if(id== null||id==0)
+            try
             {
-                return NotFound();
+                if (id == null || id == 0)
+                {
+                    return NotFound();
+                }
+                var goryFromDb = await _db.Categories.FindAsync(id);
+                var model = _mapper.Map<Category, CategoryEditModel>(goryFromDb!);
+
+                if (model is null)
+                {
+                    return NotFound();
+                }
+                return View(model);
             }
-            var CategoryFromDb = _mapper.Map<Category>(id);
-            if (CategoryFromDb == null)
+            catch (Exception e)
             {
-                return NotFound();
+
+                throw new Exception(e.Message);
             }
-            return View(CategoryFromDb);
+           
         }
+        //public IActionResult Edit(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var CategoryFromDb = _mapper.Map<Category>(id);
+        //    if (CategoryFromDb == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(CategoryFromDb);
+        //}
 
         //Post
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Category obj)
         {
-            if (ModelState.IsValid)
+            //var model = _mapper.Map<CategoryCreateModel, Category>(obj);
+            try
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    _db.Categories.Update(obj);
+                    _db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                return View(obj);
             }
-            return View(obj);
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public IActionResult Delete(int? id)
@@ -91,7 +134,7 @@ namespace CrudDotNet7.Controllers
             if (ModelState.IsValid)
             {
                 _db.Categories.Remove(obj);
-                _db.SaveChanges();
+                _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(obj);
