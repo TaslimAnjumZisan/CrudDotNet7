@@ -1,18 +1,11 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-
-namespace CrudDotNet7.Models
+﻿namespace CrudDotNet7.ViewModel
 {
-    public class Category
+    public class CategoryDeleteModel
     {
-        [Key]
         public int Id { get; set; }
-
         public string Name { get; set; }
 
         public int Display { get; set; }
-
-        [Required]
         public DateTime CreateDateTime { get; set; } = DateTime.Now;
     }
 }

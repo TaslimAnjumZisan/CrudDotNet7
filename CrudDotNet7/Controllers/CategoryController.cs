@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using CrudDotNet7.Models;
+﻿using AutoMapper;
 using CrudDotNet7.Data;
-using AutoMapper;
-using System.Security.Cryptography.Xml;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using CrudDotNet7.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CrudDotNet7.Controllers
 {
@@ -19,7 +17,9 @@ namespace CrudDotNet7.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable < Category > objCategoryList = _db.Categories.ToList();
+            var Idx = _db.Categories.ToList();
+            var objCategoryList = _mapper.Map<List<Category>, List<CategoryIndexModel>>(Idx);
+
             return View(objCategoryList);
         }
         public IActionResult Create()
@@ -33,14 +33,15 @@ namespace CrudDotNet7.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(CategoryCreateModel obj)
         {
-          //  var model= _mapper.Map<Category>(obj);
+          
 
             try
             {
-                var model = _mapper.Map<CategoryCreateModel, Category>(obj);
+               
 
                 if (ModelState.IsValid)
                 {
+                    var model = _mapper.Map<CategoryCreateModel, Category>(obj);
                     _db.Categories.Add(model);
                     _db.SaveChanges();
                     return RedirectToAction("Index");
@@ -76,31 +77,18 @@ namespace CrudDotNet7.Controllers
             }
            
         }
-        //public IActionResult Edit(int? id)
-        //{
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var CategoryFromDb = _mapper.Map<Category>(id);
-        //    if (CategoryFromDb == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(CategoryFromDb);
-        //}
-
-        //Post
+     
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Category obj)
+        public IActionResult Edit(CategoryEditModel obj)
         {
-            //var model = _mapper.Map<CategoryCreateModel, Category>(obj);
+            
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _db.Categories.Update(obj);
+                    var model = _mapper.Map<CategoryEditModel, Category>(obj);
+                    _db.Categories.Update(model);
                     _db.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
@@ -114,30 +102,49 @@ namespace CrudDotNet7.Controllers
 
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0)
+            try
             {
-                return NotFound();
+                if (id == null || id == 0)
+                {
+                    return NotFound();
+                }
+                var CatDeleteFromDb = _db.Categories.Find(id);
+                var model = _mapper.Map<Category, CategoryDeleteModel>(CatDeleteFromDb!);
+
+                if (CatDeleteFromDb == null)
+                {
+                    return NotFound();
+                }
+                return View(model);
             }
-            var CategoryFromDb = _db.Categories.Find(id);
-            if (CategoryFromDb == null)
+            catch (Exception exp) 
             {
-                return NotFound();
+                throw new Exception(exp.Message);
             }
-            return View(CategoryFromDb);
+
         }
 
         //Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(Category obj)
+        public IActionResult Delete(CategoryDeleteModel obj)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _db.Categories.Remove(obj);
-                _db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                var model = _mapper.Map<CategoryDeleteModel, Category>(obj);
+
+                if (ModelState.IsValid)
+                {
+                    _db.Categories.Remove(model);
+                    _db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                return View(obj);
             }
-            return View(obj);
+            catch (Exception exp)
+            {
+                throw new Exception(exp.Message);
+            }
         }
     }
 }

@@ -3,11 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CrudDotNet7.ViewModel
 {
-    public class CategoryCreateModel
+    public class CategoryIndexModel
     {
-
-        [Key]
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Product name required")]
         [DisplayName("Product name")]
         [RegularExpression("([A-Z*a-z]+)", ErrorMessage = "Please enter valid Name")]
