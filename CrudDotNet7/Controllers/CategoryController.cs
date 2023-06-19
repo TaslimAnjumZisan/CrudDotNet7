@@ -17,7 +17,7 @@ namespace CrudDotNet7.Controllers
         }
         public IActionResult Index()
         {
-            var Idx = _db.Categories.ToList();
+            var Idx = _db.Categorie.ToList();
             var objCategoryList = _mapper.Map<List<Category>, List<CategoryIndexModel>>(Idx);
 
             return View(objCategoryList);
@@ -25,6 +25,7 @@ namespace CrudDotNet7.Controllers
         public IActionResult Create()
         {
             var model = new CategoryCreateModel();
+            model.IsFavorite = true;
             return View(model);
         }
 
@@ -42,7 +43,7 @@ namespace CrudDotNet7.Controllers
                 if (ModelState.IsValid)
                 {
                     var model = _mapper.Map<CategoryCreateModel, Category>(obj);
-                    _db.Categories.Add(model);
+                    _db.Categorie.Add(model);
                     _db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -53,6 +54,8 @@ namespace CrudDotNet7.Controllers
                 throw new Exception(exp.Message);
             }
         }
+
+
         public async Task< IActionResult> Edit(int? id)
         {
             try
@@ -61,7 +64,7 @@ namespace CrudDotNet7.Controllers
                 {
                     return NotFound();
                 }
-                var goryFromDb = await _db.Categories.FindAsync(id);
+                var goryFromDb = await _db.Categorie.FindAsync(id);
                 var model = _mapper.Map<Category, CategoryEditModel>(goryFromDb!);
 
                 if (model is null)
@@ -88,7 +91,7 @@ namespace CrudDotNet7.Controllers
                 if (ModelState.IsValid)
                 {
                     var model = _mapper.Map<CategoryEditModel, Category>(obj);
-                    _db.Categories.Update(model);
+                    _db.Categorie.Update(model);
                     _db.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
@@ -108,7 +111,7 @@ namespace CrudDotNet7.Controllers
                 {
                     return NotFound();
                 }
-                var CatDeleteFromDb = _db.Categories.Find(id);
+                var CatDeleteFromDb = _db.Categorie.Find(id);
                 var model = _mapper.Map<Category, CategoryDeleteModel>(CatDeleteFromDb!);
 
                 if (CatDeleteFromDb == null)
@@ -135,7 +138,7 @@ namespace CrudDotNet7.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    _db.Categories.Remove(model);
+                    _db.Categorie.Remove(model);
                     _db.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }

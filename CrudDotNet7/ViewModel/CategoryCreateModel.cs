@@ -18,6 +18,12 @@ namespace CrudDotNet7.ViewModel
         [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid Number")]
         [Range(1, int.MaxValue, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public int Display { get; set; }
+        public string Brand { get; set; }
+        [DisplayName("Favorite")]
+        public Boolean IsFavorite { get; set; }
+
+        [DisplayName("Packet Available")]
+        public Boolean IsPacket { get; set; }
         public DateTime CreateDateTime { get; set; } = DateTime.Now;
     }
 }

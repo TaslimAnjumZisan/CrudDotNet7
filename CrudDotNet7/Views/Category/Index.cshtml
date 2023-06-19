@@ -10,15 +10,22 @@
     <thead class="table-striped">
         <tr>
             <td >Category Name</td>
-            <td >In Stock</td>
-            <td></td>
+            <td>In Stock</td>
+            <td>Brand</td>
+            <td>Favorite</td>
+            <td>Packet</td>
+            <td>Actions</td>
         </tr>
     </thead>
     @foreach(var obj in Model)
     {
+       @* var favourite = obj.IsFavorite ? "Yes" : "NO";*@
         <tr>
-            <td >@obj.Name</td>
-            <td >@obj.Display</td>
+            <td>@obj.Name</td>
+            <td>@obj.Display</td>
+            <td>@obj.Brand</td>
+            <td>@obj.Favourite</td>
+            <td>@obj.Packet</td>
             <td>
                 <a asp-controller="Category" class="btn btn-success" asp-action="Edit" asp-route-id="@obj.Id">Edit</a>
                 <a asp-controller="Category" class="btn btn-danger" asp-action="Delete" asp-route-id="@obj.Id">Delete</a>

@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CrudDotNet7.Models
 {
@@ -11,6 +10,11 @@ namespace CrudDotNet7.Models
         public string Name { get; set; }
 
         public int Display { get; set; }
+
+        public string Brand { get; set; }
+        public Boolean IsFavorite { get; set; }
+
+        public Boolean IsPacket { get; set; }
 
         [Required]
         public DateTime CreateDateTime { get; set; } = DateTime.Now;
